@@ -8,11 +8,20 @@ body,
 }
 body,
 form,
-input {
+input,
+select,
+option {
   font-size: 5vw;
 }
 input {
   margin: 0.1em;
+}
+form button {
+  background: none;
+  border: none;
+}
+#panel #logo {
+  margin-bottom: 0.25em;
 }
 #panel table {
   position: fixed;
