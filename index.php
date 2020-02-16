@@ -4,8 +4,14 @@ $logos=array(
   "Gîtes Mosaïques" => "https://gites-mosaiques.com/wp-content/uploads/2019/06/mosaiques-logo-v3-1L-yellow.png",
   "Kaz à Moïse" => "https://kazamoise.fr/wp-content/uploads/2019/03/kazamoise-logo-v0-248x40.png",
 );
-$logo=$_REQUEST[logo];
-if(empty($logo)) $logo=array_values($logos)[0];
+if(isset($_REQUEST[logo])) {
+  $logo=$_REQUEST[logo];
+  setcookie("pickup_logo", $logo, time()+2*24*60*60);
+} else if(isset($_COOKIE["pickup_logo"])) {
+  $logo=$_COOKIE["pickup_logo"];
+} else {
+  $logo=array_values($logos)[0];
+}
 
 $action=$_REQUEST[action];
 if($action != "Clear") {
@@ -42,7 +48,6 @@ $resetlink=$_SERVER['SCRIPT_URI'] . "?" . http_build_query(array_merge( $_GET, a
     <form method="post">
       <div>
       <select id="logo" name="logo">
-        echo "<option value=''>-- Select a logo --</option>";
         <?php while(list($key, $value) = each($logos)) {
           if($value==$logo) $selected="selected";
           else $selected="";
