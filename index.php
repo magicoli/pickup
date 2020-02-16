@@ -5,6 +5,10 @@ $firstname=$_REQUEST[firstname];
 $nickname=$_REQUEST[nickname];
 ?><html>
 <title><?php echo trim($firstname . " " . $name . " Pick Up"); ?></title>
+<link rel="icon" href="images/pickup-logo-32x32.png" sizes="32x32" />
+<link rel="icon" href="images/pickup-logo-192x192.png" sizes="192x192" />
+<link rel="apple-touch-icon-precomposed" href="images/pickup-logo-180x180.png" />
+
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" >
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="mobile-web-app-capable" content="yes">
