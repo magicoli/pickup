@@ -1,23 +1,23 @@
-#panel,
-#panel #header,
-#panel #name {
+body,
+#header,
+#name {
   text-align: center;
   font-size: 100pt;
 }
-#panel #header,
-#panel #footer {
+#header,
+#footer {
   height: 0px;
 }
 
-#panel .firstname {
+#firstname {
   font-size: 70%;
   font-weight: light;
   line-height: 100%;
 }
-#panel .lastname {
+#lastname {
   font-weight: bold;
 }
-#panel .nickname {
+#nickname {
   font-size: 50%;
   line-height: 100%;
 }

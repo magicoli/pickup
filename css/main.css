@@ -1,12 +1,12 @@
 html,
 page,
-body,
-#panel {
+body {
   font-family: "Helvetica Neue", "Helvetica", Arial, sans-serif;
   line-height: 100%;
   margin: 0;
   padding: 0;
   width: auto;
+  text-align: center;
 }
 body,
 form,
@@ -22,10 +22,10 @@ form button {
   background: none;
   border: none;
 }
-#panel #logo {
+#logo {
   margin-bottom: 0.25em;
 }
-#panel table {
+table {
   position: fixed;
   top: 0;
   left: 0;
@@ -35,18 +35,17 @@ form button {
   height: 100%;
   margin: 0;
 }
-#panel #header,
-#panel #footer {
+#header,
+#footer {
   height: 0px;
 }
 
-#panel #name {
+#name {
   vertical-align:middle;
 }
 
-#panel,
-#panel #header,
-#panel #name {
+#header,
+#name {
   text-align: center;
 }
 
