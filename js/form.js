@@ -32,9 +32,35 @@ function clearForm() {
   document.getElementById("f_nickname").value = "";
 }
 
+function setCookie(cname, cvalue, exdays) {
+ var d = new Date();
+ d.setTime(d.getTime() + (exdays*24*60*60*1000));
+ var expires = "expires="+ d.toUTCString();
+ document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+}
+
+function getCookie(cname) {
+  var name = cname + "=";
+  var decodedCookie = decodeURIComponent(document.cookie);
+  var ca = decodedCookie.split(';');
+  for(var i = 0; i <ca.length; i++) {
+    var c = ca[i];
+    while (c.charAt(0) == ' ') {
+      c = c.substring(1);
+    }
+    if (c.indexOf(name) == 0) {
+      return c.substring(name.length, c.length);
+    }
+  }
+  return "";
+}
+
 function refreshPage() {
   document.getElementById("logo").src = document.getElementById("f_logo").value;
-  if(document.getElementById("f_logo").value != "") document.getElementById("alt_logo").style.display = "none";
+  if(document.getElementById("f_logo").value != "") {
+    document.getElementById("alt_logo").style.display = "none";
+    setCookie("logo", document.getElementById("logo").getAttribute("src"), 60);
+  }
   document.getElementById("firstname").innerHTML = document.getElementById("f_firstname").value;
   document.getElementById("lastname").innerHTML = document.getElementById("f_lastname").value;
   document.getElementById("nickname").innerHTML = "";
@@ -43,21 +69,19 @@ function refreshPage() {
   return;
 }
 
-function populateValues() {
-  if(getURLParameter("action") == "reset" || getURLParameter("lastname") == "") {
-    if(getURLParameter("logo") != "") document.getElementById("f_logo").value = getURLParameter("logo");
-    document.getElementById("f_firstname").value = getURLParameter("firstname");
-    document.getElementById("f_lastname").value = getURLParameter("lastname");
-    document.getElementById("f_nickname").value = getURLParameter("nickname");
-    showForm();
-    return;
-  }
-
+function initValues() {
+  var logo;
   if(getURLParameter("logo") != "") {
-    document.getElementById("logo").src = getURLParameter("logo");
-    document.getElementById("h_logo").value = getURLParameter("logo");
-    document.getElementById("f_logo").value = getURLParameter("logo");
-    document.getElementById("alt_logo").style.display = "none";
+    logo = getURLParameter("logo");
+  } else {
+    logo = getCookie("logo");
+  }
+  document.getElementById("alt_logo").innerHTML = logo;
+
+  if(logo != "") {
+    document.getElementById("logo").src = logo;
+    document.getElementById("h_logo").value = logo;
+    document.getElementById("f_logo").value = logo;
   }
   if(getURLParameter("firstname") != "") {
     document.getElementById("firstname").innerHTML = getURLParameter("firstname");
@@ -74,6 +98,15 @@ function populateValues() {
     document.getElementById("h_nickname").value = getURLParameter("nickname");
     document.getElementById("f_nickname").value = getURLParameter("nickname");
   }
+
+  if(getURLParameter("action") == "reset" || getURLParameter("lastname") == "") {
+    document.getElementById("f_firstname").value = getURLParameter("firstname");
+    document.getElementById("f_lastname").value = getURLParameter("lastname");
+    document.getElementById("f_nickname").value = getURLParameter("nickname");
+    showForm();
+    return;
+  }
+
   refreshPage()
   // showDisplay();
 }
