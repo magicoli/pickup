@@ -12,10 +12,40 @@ function getURLParameter(variable)
   return "";
 }
 
+function showDisplay() {
+  if(document.getElementById("lastname").innerHTML == "") {
+    showForm();
+    return;
+  }
+  document.getElementById("form").style.display = "none";
+  document.getElementById("display").style.display = "block";
+}
+
+function showForm() {
+  document.getElementById("display").style.display = "none";
+  document.getElementById("form").style.display = "block";
+}
+
+function clearForm() {
+  document.getElementById("f_firstname").value = "";
+  document.getElementById("f_lastname").value = "";
+  document.getElementById("f_nickname").value = "";
+}
+
+function refreshPage() {
+  document.getElementById("logo").src = document.getElementById("f_logo").value;
+  if(document.getElementById("f_logo").value != "") document.getElementById("alt_logo").style.display = "none";
+  document.getElementById("firstname").innerHTML = document.getElementById("f_firstname").value;
+  document.getElementById("lastname").innerHTML = document.getElementById("f_lastname").value;
+  document.getElementById("nickname").innerHTML = "";
+  if(getURLParameter("nickname") != "") document.getElementById("nickname").innerHTML = "(" + document.getElementById("f_logo").value + ")";
+  showDisplay();
+  return;
+}
+
 function populateValues() {
   if(getURLParameter("action") == "reset" || getURLParameter("lastname") == "") {
-    document.getElementById("display").style.display = "none";
-    document.getElementById("form").style.display = "block";
+    showForm();
     if(getURLParameter("logo") != "") document.getElementById("f_logo").value = getURLParameter("logo");
     document.getElementById("f_firstname").value = getURLParameter("firstname");
     document.getElementById("f_lastname").value = getURLParameter("lastname");
@@ -23,8 +53,7 @@ function populateValues() {
     return;
   }
 
-  document.getElementById("display").style.display = "block";
-  document.getElementById("form").style.display = "none";
+  showDisplay();
 
   document.getElementById("logo").src = getURLParameter("logo");
   if(getURLParameter("logo") != "") document.getElementById("alt_logo").style.display = "none";

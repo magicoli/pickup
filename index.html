@@ -22,7 +22,7 @@
         <td>
           <div id="header">
             <div>
-              <form>
+              <form action="#" onsubmit="showForm();return false">
                 <input type=hidden id="h_firstname" name=firstname>
                 <input type=hidden id="h_lastname" name=lastname>
                 <input type=hidden id="h_nickname" name=nickname>
@@ -50,7 +50,7 @@
     </table>
   </div>
   <div id=form style="display:none;">
-    <form>
+    <form action="#" onsubmit="refreshPage();return false">
       <div>
         <select id="f_logo" name="logo">
           <option value='images/lelitdoli-logo-v1-fuchsia-1.png'>Le lit d'Oli</option>
@@ -62,7 +62,8 @@
       <input type=text id="f_lastname" name=lastname placeholder="Name (required)" value="">
       <input type=text id="f_nickname" name=nickname placeholder="Nick name" value="">
       <div>
-        <input type="submit" value="Submit">
+        <input id=clear type="submit" name=action value="Clear" onclick="clearForm();return false" style="display:none">
+        <input id=submit type="submit" value="Submit">
       </div>
     </form>
   </div>
