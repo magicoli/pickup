@@ -71,6 +71,9 @@ function refreshPage() {
 
 function initValues() {
   var logo;
+  if(getURLParameter("source") != "mobileapp")
+  document.getElementById("download").style.display = "block";
+
   if(getURLParameter("logo") != "") {
     logo = getURLParameter("logo");
   } else {
