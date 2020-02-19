@@ -12,12 +12,12 @@ body,
 #firstname {
   font-size: 70%;
   font-weight: light;
-  line-height: 100%;
+  /* line-height: 1em; */
 }
 #lastname {
   font-weight: bold;
 }
 #nickname {
   font-size: 50%;
-  line-height: 100%;
+  /* line-height: 1em; */
 }

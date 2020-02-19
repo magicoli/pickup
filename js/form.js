@@ -1,3 +1,8 @@
+function debug(message) {
+  // document.getElementById("debug").innerHTML = document.getElementById("debug").innerHTML + message + "\n<br>";
+  return;
+}
+
 function getURLParameter(variable)
 {
   var query = window.location.search.substring(1);
@@ -37,6 +42,7 @@ function setCookie(cname, cvalue, exdays) {
  d.setTime(d.getTime() + (exdays*24*60*60*1000));
  var expires = "expires="+ d.toUTCString();
  document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+ debug("setCookie " + cname + "=" + cvalue);
 }
 
 function getCookie(cname) {
@@ -49,6 +55,7 @@ function getCookie(cname) {
       c = c.substring(1);
     }
     if (c.indexOf(name) == 0) {
+      debug("getCookie: " + cname + "=" + c.substring(name.length, c.length));
       return c.substring(name.length, c.length);
     }
   }
@@ -64,22 +71,24 @@ function refreshPage() {
   document.getElementById("firstname").innerHTML = document.getElementById("f_firstname").value;
   document.getElementById("lastname").innerHTML = document.getElementById("f_lastname").value;
   document.getElementById("nickname").innerHTML = "";
-  if(getURLParameter("nickname") != "") document.getElementById("nickname").innerHTML = "(" + document.getElementById("f_logo").value + ")";
+  if(getURLParameter("nickname") != "") document.getElementById("nickname").innerHTML = "(" + document.getElementById("f_nickname").value + ")";
   showDisplay();
   return;
 }
 
 function initValues() {
   var logo;
+  debug("init");
   if(getURLParameter("source") != "mobileapp")
   document.getElementById("download").style.display = "block";
 
   if(getURLParameter("logo") != "") {
     logo = getURLParameter("logo");
+    debug("from url: " + logo);
   } else {
     logo = getCookie("logo");
+    debug("from cookies: " + logo);
   }
-  document.getElementById("alt_logo").innerHTML = logo;
 
   if(logo != "") {
     document.getElementById("logo").src = logo;
