@@ -70,8 +70,10 @@ function refreshPage() {
   }
   document.getElementById("firstname").innerHTML = document.getElementById("f_firstname").value;
   document.getElementById("lastname").innerHTML = document.getElementById("f_lastname").value;
+  if(document.getElementById("f_nickname").value != "")
+  document.getElementById("nickname").innerHTML = "(" + document.getElementById("f_nickname").value + ")"
+  else
   document.getElementById("nickname").innerHTML = "";
-  if(getURLParameter("nickname") != "") document.getElementById("nickname").innerHTML = "(" + document.getElementById("f_nickname").value + ")";
   showDisplay();
   return;
 }
@@ -106,7 +108,7 @@ function initValues() {
     document.getElementById("f_lastname").value = getURLParameter("lastname");
   }
   if(getURLParameter("nickname") != "") {
-    document.getElementById("nickname").innerHTML = "(" + getURLParameter("nickname") + ")";
+    document.getElementById("nickname").innerHTML = getURLParameter("nickname");
     document.getElementById("h_nickname").value = getURLParameter("nickname");
     document.getElementById("f_nickname").value = getURLParameter("nickname");
   }
