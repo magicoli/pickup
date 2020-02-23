@@ -1,8 +1,8 @@
 var updateURL = "https://magiiic.com/pickup/download/";
 
 function debug(message) {
-  return;
   document.getElementById("debug").innerHTML = document.getElementById("debug").innerHTML + message + "\n<br>";
+  return;
 }
 
 function checkUpates()
@@ -96,14 +96,16 @@ function clearForm() {
 }
 
 function setCookie(cname, cvalue, exdays) {
- var d = new Date();
- d.setTime(d.getTime() + (exdays*24*60*60*1000));
- var expires = "expires="+ d.toUTCString();
- document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
- debug("setCookie " + cname + "=" + cvalue);
+  // debug("setCookie " + cname + "=" + cvalue + " for " + exdays + " days");
+  var d = new Date();
+  d.setTime(d.getTime() + (exdays*24*60*60*1000));
+  var expires = "expires="+ d.toUTCString();
+  document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+  // debug("saved");
 }
 
 function getCookie(cname) {
+  // debug("getCookie " + cname);
   var name = cname + "=";
   var decodedCookie = decodeURIComponent(document.cookie);
   var ca = decodedCookie.split(';');
@@ -113,7 +115,7 @@ function getCookie(cname) {
       c = c.substring(1);
     }
     if (c.indexOf(name) == 0) {
-      debug("getCookie: " + cname + "=" + c.substring(name.length, c.length));
+      // debug(cname + "=" + c.substring(name.length, c.length));
       return c.substring(name.length, c.length);
     }
   }
@@ -142,10 +144,10 @@ function initValues() {
 
   if(getURLParameter("logo") != "") {
     logo = getURLParameter("logo");
-    debug("from url: " + logo);
+    // debug("from url: " + logo);
   } else {
     logo = getCookie("logo");
-    debug("from cookies: " + logo);
+    // debug("from cookies: " + logo);
   }
 
   if(logo != "") {
