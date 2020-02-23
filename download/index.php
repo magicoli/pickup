@@ -39,8 +39,8 @@ if(isset($_REQUEST['dev'])) {
 if(isset($_REQUEST['query'])) {
   header("Content-Type: text/plain");
   header("Access-Control-Allow-Origin: *");
-  echo "VERSION=$buildVersion\n";
-  echo "LOCATION=$buildUrl\n";
+  echo "VERSION=$version\n";
+  echo "LOCATION=$$location\n";
   echo $debug;
 } else  {
   header("Location: $location");
