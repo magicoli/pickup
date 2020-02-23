@@ -1,9 +1,9 @@
 function debug(message) {
-  // document.getElementById("debug").innerHTML = document.getElementById("debug").innerHTML + message + "\n<br>";
   return;
+  document.getElementById("debug").innerHTML = document.getElementById("debug").innerHTML + message + "\n<br>";
 }
 
-function checkVersion()
+function checkUpates()
 {
   httpGetAsync("https://magiiic.com/pickup/download/?query", processHTML);
     // var xmlHttp = new XMLHttpRequest();
@@ -12,10 +12,38 @@ function checkVersion()
     // return xmlHttp.responseText;
 }
 
-function processHTML(data) {
-  eval(data);
+function compareVersion(v1, v2) {
+    if (typeof v1 !== 'string') return false;
+    if (typeof v2 !== 'string') return false;
+    if (v1 == v2) return 0;
+    v1 = v1.replace("-",".").split('.');
+    v2 = v2.replace("-",".").split('.');
+    // v1 = v1.split('.');
+    // v2 = v2.split('.');
+    const k = Math.min(v1.length, v2.length);
+    for (let i = 0; i < k; ++ i) {
+        v1[i] = parseInt(v1[i], 10);
+        v2[i] = parseInt(v2[i], 10);
+        if (v1[i] > v2[i]) return 1;
+        if (v1[i] < v2[i]) return -1;
+    }
+    return v1.length == v2.length ? 0: (v1.length < v2.length ? -1 : 1);
+}
 
-  document.getElementById("updates").innerHTML = VERSION;
+function processHTML(data) {
+  // eval(data);
+  var json = JSON.parse(data);
+  var availableVersion=json.VERSION;
+  if(getURLParameter("version") != "") {
+    var currentVersion = getURLParameter("version");
+    if(compareVersion(availableVersion, currentVersion) > 0) {
+      document.getElementById("download").style.display = "block";
+      document.getElementById("download").innerHTML = " <a href='" + json.LOCATION + "'>Update to " + availableVersion + "</a>";
+    }
+  } else {
+    document.getElementById("download").style.display = "block";
+    document.getElementById("download").innerHTML = " <a href='" + json.LOCATION + "'>Download Android app</a>";
+  }
 }
 
 function httpGetAsync(theUrl, callback)
@@ -106,13 +134,7 @@ function refreshPage() {
 
 function initValues() {
   var logo;
-  checkVersion();
-  // versionInfo=httpGet("https://magiiic.com/pickup/download/?query");
-  // document.getElementById("updates").innerHTML = versionInfo;
-
-  debug("init");
-  if(getURLParameter("source") != "mobileapp")
-  document.getElementById("download").style.display = "block";
+  checkUpates();
 
   if(getURLParameter("logo") != "") {
     logo = getURLParameter("logo");

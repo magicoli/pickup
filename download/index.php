@@ -37,10 +37,14 @@ if(isset($_REQUEST['dev'])) {
   $location=$stableUrl;
 }
 if(isset($_REQUEST['query'])) {
-  header("Content-Type: text/plain");
   header("Access-Control-Allow-Origin: *");
-  echo "VERSION=$version\n";
-  echo "LOCATION=$location\n";
+  header("Content-Type: text/plain");
+  // echo "VERSION=$version\n";
+  // echo "LOCATION=$location\n";
+  echo json_encode(array(
+    'VERSION' => $version,
+    'LOCATION' => $location,
+  ));
   echo $debug;
 } else  {
   header("Location: $location");
