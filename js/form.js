@@ -1,3 +1,5 @@
+var updateURL = "https://magiiic.com/pickup/download/";
+
 function debug(message) {
   return;
   document.getElementById("debug").innerHTML = document.getElementById("debug").innerHTML + message + "\n<br>";
@@ -5,7 +7,7 @@ function debug(message) {
 
 function checkUpates()
 {
-  httpGetAsync("https://magiiic.com/pickup/download/?query", processHTML);
+  httpGetAsync(updateURL + "?query", processHTML);
     // var xmlHttp = new XMLHttpRequest();
     // xmlHttp.open( "GET", theUrl, false ); // false for synchronous request
     // // xmlHttp.send( null );
@@ -38,11 +40,13 @@ function processHTML(data) {
     var currentVersion = getURLParameter("version");
     if(compareVersion(availableVersion, currentVersion) > 0) {
       document.getElementById("download").style.display = "block";
-      document.getElementById("download").innerHTML = " <a href='" + json.LOCATION + "'>Update to " + availableVersion + "</a>";
+      // document.getElementById("download").innerHTML = " <a href='" + json.LOCATION + "'>Update to " + availableVersion + "</a>";
+      document.getElementById("download").innerHTML = " <a href='" + updateURL + "'>Update to " + availableVersion + "</a>";
     }
   } else {
     document.getElementById("download").style.display = "block";
-    document.getElementById("download").innerHTML = " <a href='" + json.LOCATION + "'>Download Android app</a>";
+    // document.getElementById("download").innerHTML = " <a href='" + json.LOCATION + "'>Download Android app</a>";
+    document.getElementById("download").innerHTML = " <a href='" + updateURL + "'>Download Android app</a>";
   }
 }
 
