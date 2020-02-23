@@ -3,6 +3,32 @@ function debug(message) {
   return;
 }
 
+function checkVersion()
+{
+  httpGetAsync("https://magiiic.com/pickup/download/?query", processHTML);
+    // var xmlHttp = new XMLHttpRequest();
+    // xmlHttp.open( "GET", theUrl, false ); // false for synchronous request
+    // // xmlHttp.send( null );
+    // return xmlHttp.responseText;
+}
+
+function processHTML(data) {
+  eval(data);
+
+  document.getElementById("updates").innerHTML = VERSION;
+}
+
+function httpGetAsync(theUrl, callback)
+{
+    var xmlHttp = new XMLHttpRequest();
+    xmlHttp.onreadystatechange = function() {
+        if (xmlHttp.readyState == 4 && xmlHttp.status == 200)
+            callback(xmlHttp.responseText);
+    }
+    xmlHttp.open("GET", theUrl, true); // true for asynchronous
+    xmlHttp.send(null);
+}
+
 function getURLParameter(variable)
 {
   var query = window.location.search.substring(1);
@@ -80,6 +106,10 @@ function refreshPage() {
 
 function initValues() {
   var logo;
+  checkVersion();
+  // versionInfo=httpGet("https://magiiic.com/pickup/download/?query");
+  // document.getElementById("updates").innerHTML = versionInfo;
+
   debug("init");
   if(getURLParameter("source") != "mobileapp")
   document.getElementById("download").style.display = "block";
