@@ -40,7 +40,7 @@ if(isset($_REQUEST['query'])) {
   header("Content-Type: text/plain");
   header("Access-Control-Allow-Origin: *");
   echo "VERSION=$version\n";
-  echo "LOCATION=$$location\n";
+  echo "LOCATION=$location\n";
   echo $debug;
 } else  {
   header("Location: $location");
