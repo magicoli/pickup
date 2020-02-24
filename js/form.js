@@ -1,3 +1,5 @@
+window.androidObj = function AndroidClass(){};
+
 var updateURL = "https://magiiic.com/downloads/pickup/";
 
 function debug(message) {
@@ -127,6 +129,7 @@ function refreshPage() {
   if(document.getElementById("f_logo").value != "") {
     document.getElementById("alt_logo").style.display = "none";
     setCookie("logo", document.getElementById("logo").getAttribute("src"), 60);
+    window.androidObj.textToAndroid(document.getElementById("f_logo").value);
   }
   document.getElementById("firstname").innerHTML = document.getElementById("f_firstname").value;
   document.getElementById("lastname").innerHTML = document.getElementById("f_lastname").value;
@@ -135,6 +138,7 @@ function refreshPage() {
   else
   document.getElementById("nickname").innerHTML = "";
   showDisplay();
+
   return;
 }
 
