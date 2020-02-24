@@ -1,4 +1,4 @@
-var updateURL = "https://magiiic.com/pickup/download/";
+var updateURL = "https://magiiic.com/downloads/pickup/";
 
 function debug(message) {
   document.getElementById("debug").innerHTML = document.getElementById("debug").innerHTML + message + "\n<br>";
