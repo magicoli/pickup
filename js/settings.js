@@ -1,1 +1,0 @@
-alert('Settings accessed from inject script: ' + JSON.stringify(Settings));
