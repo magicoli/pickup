@@ -37,7 +37,9 @@ table {
 }
 #header,
 #footer {
-  height: 0px;
+  /* height: 0px; */
+  /* background: pink; */
+  /* border: solid 2px red; */
 }
 
 #name {
