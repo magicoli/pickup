@@ -128,7 +128,7 @@ function getCookie(cname) {
 function refreshPage() {
   document.getElementById("logo").src = document.getElementById("f_logo").value;
   if(document.getElementById("f_logo").value != "") {
-    document.getElementById("alt_logo").style.display = "none";
+    // document.getElementById("alt_logo").style.display = "none";
     setCookie("logo", document.getElementById("logo").getAttribute("src"), 60);
     if(typeof window.androidObj.textToAndroid === "function")
     window.androidObj.textToAndroid(document.getElementById("f_logo").value);
@@ -158,22 +158,22 @@ function initValues() {
 
   if(logo != "") {
     document.getElementById("logo").src = logo;
-    document.getElementById("h_logo").value = logo;
+    // document.getElementById("h_logo").value = logo;
     document.getElementById("f_logo").value = logo;
   }
   if(getURLParameter("firstname") != "") {
     document.getElementById("firstname").innerHTML = getURLParameter("firstname");
-    document.getElementById("h_firstname").value = getURLParameter("firstname");
+    // document.getElementById("h_firstname").value = getURLParameter("firstname");
     document.getElementById("f_firstname").value = getURLParameter("firstname");
   }
   if(getURLParameter("lastname") != "") {
     document.getElementById("lastname").innerHTML = getURLParameter("lastname");
-    document.getElementById("h_lastname").value = getURLParameter("lastname");
+    // document.getElementById("h_lastname").value = getURLParameter("lastname");
     document.getElementById("f_lastname").value = getURLParameter("lastname");
   }
   if(getURLParameter("nickname") != "") {
     document.getElementById("nickname").innerHTML = getURLParameter("nickname");
-    document.getElementById("h_nickname").value = getURLParameter("nickname");
+    // document.getElementById("h_nickname").value = getURLParameter("nickname");
     document.getElementById("f_nickname").value = getURLParameter("nickname");
   }
 

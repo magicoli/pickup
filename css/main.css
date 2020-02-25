@@ -67,3 +67,6 @@ div {
   font-weight: normal;
   margin: 0;
 }
+h1 {
+  margin: 0 !important;
+}
