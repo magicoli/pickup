@@ -9,8 +9,7 @@ A wonderful digital sign for airport pick-ups
 
 (c)Olivier van Helden - GNU Affero General Public License v3.0
 
-jQuery.i18n libraries (c)Santhosh Thottingal, GPLv2 and MIT licenses
-  https://github.com/wikimedia/jquery.i18n
+[jQuery.i18n](https://github.com/wikimedia/jquery.i18n) libraries (c)Santhosh Thottingal, GPLv2 and MIT licenses
 
-CLDRPluralRuleParser libraries (c)Santhosh Thottingal and other contributors, MIT license
-  https://github.com/santhoshtr/CLDRPluralRuleParser/blob/master/LICENSE.txt
+[CLDRPluralRuleParser](https://github.com/santhoshtr/CLDRPluralRuleParser/blob/master/LICENSE.txt) libraries (c)Santhosh Thottingal and other contributors, MIT license
+  
