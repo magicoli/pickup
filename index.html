@@ -12,6 +12,17 @@
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="mobile-web-app-capable" content="yes">
   <!-- <script type='text/javascript' src='pickup.js'></script> -->
+
+  <script src="libs/jquery-3.2.1.min.js"></script>
+  <!-- <script src="libs/CLDRPluralRuleParser.js"></script> -->
+  <script src="libs/jquery.i18n.js"></script>
+  <script src="libs/jquery.i18n.messagestore.js"></script>
+  <!-- <script src="libs/jquery.i18n.fallbacks.js"></script> -->
+  <!-- <script src="libs/jquery.i18n.parser.js"></script> -->
+  <!-- <script src="libs/jquery.i18n.emitter.js"></script> -->
+  <!-- <script src="libs/jquery.i18n.language.js"></script> -->
+
+  <script src="js/i18n.js"></script>
   <script type='text/javascript' src='js/form.js'></script>
 </head>
 <body onload="initValues();">
@@ -63,11 +74,11 @@
         </select>
       <input type=text id="f_firstname" name=firstname placeholder="First name" value="">
     </div>
-      <input type=text id="f_lastname" name=lastname placeholder="Name (required)" value="">
-      <input type=text id="f_nickname" name=nickname placeholder="Nick name" value="">
+      <input type=text id="f_lastname" name=lastname placeholder="Name (required)" value="" required>
+      <input type=text id="f_nickname" name=nickname placeholder="Nickname" value="">
       <div>
-        <input id=clear type="submit" name=action value="Clear" onclick="clearForm();return false" style="display:none">
-        <input id=submit type="submit" value="Submit">
+        <input id=submit type="submit" value="Submit" data-i18n="Submit">
+        <input id=clear type="submit" name=action value="Clear" onclick="clearForm();return false"  data-i18n="Clear">
       </div>
     </form>
     <div id=download style="display:none"></div>

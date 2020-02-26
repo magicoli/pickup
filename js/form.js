@@ -43,13 +43,11 @@ function processHTML(data) {
     var currentVersion = getURLParameter("version");
     if(compareVersion(availableVersion, currentVersion) > 0) {
       document.getElementById("download").style.display = "block";
-      // document.getElementById("download").innerHTML = " <a href='" + json.LOCATION + "'>Update to " + availableVersion + "</a>";
-      document.getElementById("download").innerHTML = " <a href='" + downloadURL + "'>Version " + availableVersion + " available</a>";
+      document.getElementById("download").innerHTML = " <a href='" + json.LOCATION + "'>" + $.i18n("Version $1 is available", availableVersion) +"</a>";
     }
   } else {
     document.getElementById("download").style.display = "block";
-    // document.getElementById("download").innerHTML = " <a href='" + json.LOCATION + "'>Download Android app</a>";
-    document.getElementById("download").innerHTML = " <a href='" + downloadURL + "'>Download Android app</a>";
+    document.getElementById("download").innerHTML = " <a href='" + json.LOCATION + "'>Download Android app</a>";
   }
 }
 
@@ -146,6 +144,15 @@ function refreshPage() {
 
 function initValues() {
   var logo;
+
+  initLocales();
+  // Fix buttons and placeholders
+  document.getElementById("submit").value=$.i18n("Submit");
+  document.getElementById("clear").value=$.i18n("Clear");
+  document.getElementById("f_firstname").placeholder=$.i18n("First name");
+  document.getElementById("f_lastname").placeholder=$.i18n("Name (required)");
+  document.getElementById("f_nickname").placeholder=$.i18n("Nickname");
+
   checkUpates();
 
   if(getURLParameter("logo") != "") {
