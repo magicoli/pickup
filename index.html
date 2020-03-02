@@ -30,7 +30,7 @@
     <thead>
       <tr id=header height=10%><td>
         <a href="#" onclick="showForm();return false">
-          <span id=company_name></span>
+          <div id=company_name></div>
           <img id=logo>
         </a>
       </td></tr>
@@ -46,7 +46,7 @@
           <div id=form>
           <form action="#" onsubmit="refreshPage();return false">
             <div>
-              <input id="f_logo" name="logo">
+              <input type="hidden" id="f_logo" name="logo">
               <!-- <label for="f_logo">Select a file:</label> -->
               <!-- <input id="f_logo" name="logo_file" type="file"> -->
               <!-- <input id="f_logo" type=hidden name="logo" value="images/magiiic-logoby-v4-by.png"> -->

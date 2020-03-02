@@ -44,6 +44,12 @@ a, a:hover, a:active, a:visited {
 }
 table #header {
   font-size: 3vw;
+  text-align: center;
+}
+table #header a {
+  display: inline-block;
+  width: 100%;
+  text-align: center !important;
 }
 table #content {
   font-size: 10vw;
