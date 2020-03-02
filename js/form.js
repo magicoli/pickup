@@ -1,7 +1,7 @@
 window.androidObj = function AndroidClass(){};
 
 var updateURL = "https://magiiic.com/downloads/pickup/";
-var downloadURL = "https://magiiic.com/downloads/";
+var downloadURL = "https://play.google.com/store/apps/details?id=com.magiiic.pickup";
 
 function debug(message) {
   document.getElementById("debug").innerHTML = document.getElementById("debug").innerHTML + message + "\n<br>";
@@ -47,7 +47,7 @@ function processHTML(data) {
     }
   } else {
     document.getElementById("download").style.display = "block";
-    document.getElementById("download").innerHTML = " <a href='" + json.LOCATION + "'>" + $.i18n("Download Android app", availableVersion) +"</a>";
+    document.getElementById("download").innerHTML = " <a href='" + downloadURL + "'>" + $.i18n("Download Android app", availableVersion) +"</a>";
   }
 }
 
@@ -94,6 +94,8 @@ function clearForm() {
   document.getElementById("f_firstname").value = "";
   document.getElementById("f_lastname").value = "";
   document.getElementById("f_nickname").value = "";
+  document.getElementById("f_logo").value = "";
+  refreshPage();
 }
 
 function setCookie(cname, cvalue, exdays) {
@@ -123,13 +125,30 @@ function getCookie(cname) {
   return "";
 }
 
+function imagePicker() {
+  if(typeof window.androidObj.textToAndroid === "function") {
+    window.androidObj.textToAndroid("openImagePicker");
+  }
+}
+
 function refreshPage() {
   document.getElementById("logo").src = document.getElementById("f_logo").value;
+  debug("f_logo " + document.getElementById("f_logo").value);
+  debug("c_logo " + document.getElementById("logo").getAttribute("src"));
   if(document.getElementById("f_logo").value != "") {
     // document.getElementById("alt_logo").style.display = "none";
     setCookie("logo", document.getElementById("logo").getAttribute("src"), 60);
     if(typeof window.androidObj.textToAndroid === "function")
     window.androidObj.textToAndroid(document.getElementById("f_logo").value);
+    document.getElementById("company_name").style.display = "none";
+    document.getElementById("logo").style.display = "block";
+    debug("<img src=" + logo + ">");
+  } else {
+    debug("empty logo");
+    if(document.getElementById("company_name").innerHTML == "")
+    document.getElementById("company_name").innerHTML = "My Anonymous Cie";
+      document.getElementById("company_name").style.display = "block";
+      document.getElementById("logo").style.display = "none";
   }
   document.getElementById("firstname").innerHTML = document.getElementById("f_firstname").value;
   document.getElementById("lastname").innerHTML = document.getElementById("f_lastname").value;
@@ -149,6 +168,7 @@ function initValues() {
   // Fix buttons and placeholders
   document.getElementById("submit").value=$.i18n("Submit");
   document.getElementById("clear").value=$.i18n("Clear");
+  document.getElementById("change").value=$.i18n("Change logo");
   document.getElementById("f_firstname").placeholder=$.i18n("First name");
   document.getElementById("f_lastname").placeholder=$.i18n("Name (required)");
   document.getElementById("f_nickname").placeholder=$.i18n("Nickname");
@@ -162,8 +182,8 @@ function initValues() {
     logo = getCookie("logo");
     // debug("from cookies: " + logo);
   }
-
   if(logo != "") {
+    debug("i_logo " + logo);
     document.getElementById("logo").src = logo;
     // document.getElementById("h_logo").value = logo;
     document.getElementById("f_logo").value = logo;
@@ -182,6 +202,9 @@ function initValues() {
     document.getElementById("nickname").innerHTML = getURLParameter("nickname");
     // document.getElementById("h_nickname").value = getURLParameter("nickname");
     document.getElementById("f_nickname").value = getURLParameter("nickname");
+  }
+  if(getURLParameter("company_name") != "") {
+    document.getElementById("company_name").innerHTML = getURLParameter("company_name");
   }
 
   if(getURLParameter("action") == "reset" || getURLParameter("lastname") == "") {

@@ -12,6 +12,8 @@ function initLocales() {
 				"Nickname": "Surnom",
 				"Submit": "Envoyer",
 				"Clear": "Effacer",
+				"Change": "Changer",
+				"Change logo": "Changer le logo",
 				"Version $1 is available": "La version $1 est disponible",
 				"Download Android app": "Télécharger l'app Android",
 			}

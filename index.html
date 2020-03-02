@@ -6,7 +6,7 @@
   <link rel="apple-touch-icon-precomposed" href="images/pickup-logo-180x180.png" />
 
   <link rel='stylesheet' id='pu_main'  href='css/main.css' type='text/css' media='all' />
-  <link rel='stylesheet' id='pu_main'  href='css/pane.css' type='text/css' media='all' />
+  <!-- <link rel='stylesheet' id='pu_main'  href='css/pane.css' type='text/css' media='all' /> -->
 
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8" >
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -26,63 +26,58 @@
   <script type='text/javascript' src='js/form.js'></script>
 </head>
 <body onload="initValues();">
-  <div id=debug></div>
-
-  <div id=display>
-    <table>
-      <thead>
-      <tr>
-        <td>
-          <div id="header">
-            <div>
-                  <!-- <h1 id="alt_logo">Pick-Up</h1> -->
-                  <h1><a href="#" onclick="showForm();return false"><img id=logo alt="Pick-Up"></h1>
-            </div>
-          </div>
-        </td>
-      </tr>
+  <table width=100% height!100%>
+    <thead>
+      <tr id=header height=10%><td>
+        <a href="#" onclick="showForm();return false">
+          <span id=company_name></span>
+          <img id=logo>
+        </a>
+      </td></tr>
     </thead>
     <tbody>
-      <tr>
+      <tr id=content>
         <td id=name valign=middle style="">
-          <div id=firstname></div>
-          <div id=lastname>Hello</div>
-          <div id=nickname>Is it me you're looking for? </div>
+          <div id=display>
+            <div id=firstname></div>
+            <div id=lastname>Hello</div>
+            <div id=nickname>Is it me you're looking for?</div>
+          </div>
+          <div id=form>
+          <form action="#" onsubmit="refreshPage();return false">
+            <div>
+              <input id="f_logo" name="logo">
+              <!-- <label for="f_logo">Select a file:</label> -->
+              <!-- <input id="f_logo" name="logo_file" type="file"> -->
+              <!-- <input id="f_logo" type=hidden name="logo" value="images/magiiic-logoby-v4-by.png"> -->
+              <!-- <select id="f_logo" name="logo"> -->
+              <!-- <option value='images/magiiic-logoby-v4-by.png'>Magiiic</option> -->
+              <!-- <option value='images/lelitdoli-logo-v1-fuchsia-1.png'>Le lit d'Oli</option> -->
+              <!-- <option value='images/mosaiques-logo-v3-1L-yellow.png' >Gîtes Mosaïques</option> -->
+              <!-- <option value='images/kazamoise-logo-v0-248x40.png' >Kaz à Moïse</option> -->
+              <!-- </select> -->
+              <input type=text id="f_firstname" name=firstname placeholder="First name" value=""><br>
+              <input type=text id="f_lastname" name=lastname placeholder="Name (required)" value="" required><br>
+              <input type=text id="f_nickname" name=nickname placeholder="Nickname" value="">
+            </div>
+            <div>
+              <input id=submit type="submit" value="Submit" data-i18n="Submit">
+              <input id=clear type="reset" name=action value="Clear" onclick="clearForm();return false"  data-i18n="Clear">
+              <input id=change type="submit" name=action value="Change logo" onclick="imagePicker();return false"  data-i18n="Change logo">
+            </div>
+          </form>
+        </div>
+          <div id=debug></div>
         </td>
       </tr>
     </tbody>
     <tfoot>
-      <tr>
-        <td><div id="footer">
-        </div></td>
+      <tr id=footer height=10%>
+        <td>
+          <div id=download style="display:none"></div>
+        </td>
       </tr>
     </tfoot>
-    </table>
-  </div>
-  <div id=form style="display:none;">
-    <form action="#" onsubmit="refreshPage();return false">
-      <div>
-        <!-- <label for="f_logo">Select a file:</label> -->
-        <!-- <input id="f_logo" name="logo_file" type="file"> -->
-        <!-- <input id="f_logo" name="logo"> -->
-        <!-- <input id="f_logo" type=hidden name="logo" value="images/magiiic-logoby-v4-by.png"> -->
-        <select id="f_logo" name="logo">
-          <option value='images/magiiic-logoby-v4-by.png'>Magiiic</option>
-          <option value='images/lelitdoli-logo-v1-fuchsia-1.png'>Le lit d'Oli</option>
-          <option value='images/mosaiques-logo-v3-1L-yellow.png' >Gîtes Mosaïques</option>
-          <option value='images/kazamoise-logo-v0-248x40.png' >Kaz à Moïse</option>
-        </select>
-      <input type=text id="f_firstname" name=firstname placeholder="First name" value="">
-    </div>
-      <input type=text id="f_lastname" name=lastname placeholder="Name (required)" value="" required>
-      <input type=text id="f_nickname" name=nickname placeholder="Nickname" value="">
-      <div>
-        <input id=submit type="submit" value="Submit" data-i18n="Submit">
-        <input id=clear type="submit" name=action value="Clear" onclick="clearForm();return false"  data-i18n="Clear">
-      </div>
-    </form>
-    <div id=download style="display:none"></div>
-    <div id=debug></div>
-  </div>
+  </table>
 </body>
 </html>

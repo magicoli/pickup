@@ -1,0 +1,74 @@
+html,
+page,
+body {
+  font-family: "Helvetica Neue", "Helvetica", Arial, sans-serif;
+  /* line-height: 0.5em; */
+  margin: 0;
+  padding: 0;
+  width: auto;
+  text-align: center;
+}
+body,
+form,
+input,
+select,
+option {
+  font-size: 5vw;
+}
+input {
+  margin: 0.1em;
+}
+form button {
+  background: none;
+  border: none;
+}
+#logo {
+  margin-bottom: 0.25em;
+}
+table {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+}
+#header,
+#footer {
+  /* height: 0px; */
+  /* background: pink; */
+  /* border: solid 2px red; */
+}
+
+#name {
+  vertical-align:middle;
+}
+
+#header,
+#name {
+  text-align: center;
+}
+
+img,
+table,
+tr,
+td,
+div {
+  max-width: 100%;
+}
+#download {
+  font-size: 25%;
+}
+
+#debug {
+  font-size: 12pt;
+  /* line-height: 12pt; */
+  text-align: left;
+  font-weight: normal;
+  margin: 0;
+}
+h1 {
+  margin: 0 !important;
+}

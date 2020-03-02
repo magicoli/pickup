@@ -13,17 +13,19 @@ form,
 input,
 select,
 option {
+  font-size: 1vw;
+}
+form,
+input,
+select,
+option {
   font-size: 5vw;
 }
 input {
   margin: 0.1em;
 }
-form button {
-  background: none;
-  border: none;
-}
-#logo {
-  margin-bottom: 0.25em;
+input[type=button], input[type=submit], input[type=reset] {
+    font-size: 2.5vw;
 }
 table {
   position: fixed;
@@ -34,41 +36,39 @@ table {
   width: 100%;
   height: 100%;
   margin: 0;
-}
-#header,
-#footer {
-  /* height: 0px; */
-  /* background: pink; */
-  /* border: solid 2px red; */
-}
-
-#name {
-  vertical-align:middle;
-}
-
-#header,
-#name {
   text-align: center;
 }
-
-img,
-table,
-tr,
-td,
-div {
-  max-width: 100%;
+a, a:hover, a:active, a:visited {
+  text-decoration: none;
+  color: black;
 }
-#download {
-  font-size: 25%;
+table #header {
+  font-size: 3vw;
 }
-
+table #content {
+  font-size: 10vw;
+}
+table #footer {
+}
+#firstname, #f_firstname {
+  font-size: 70%;
+  font-weight: light;
+  text-align: center;
+  /* line-height: 1em; */
+}
+#lastname, #f_lastname {
+  font-weight: bold;
+  text-align: center;
+}
+#nickname, #f_nickname {
+  font-size: 50%;
+  text-align: center;
+  /* line-height: 1em; */
+}
 #debug {
   font-size: 12pt;
   /* line-height: 12pt; */
   text-align: left;
   font-weight: normal;
   margin: 0;
-}
-h1 {
-  margin: 0 !important;
 }
