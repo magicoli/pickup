@@ -83,6 +83,7 @@ function showDisplay() {
   }
   document.getElementById("form").style.display = "none";
   document.getElementById("display").style.display = "block";
+  fitText();
 }
 
 function showForm() {
@@ -192,6 +193,41 @@ function initValues() {
     return;
   }
 
-  refreshPage()
+  refreshPage();
+  fitText();
   // showDisplay();
+}
+
+fitText() {
+  // Obtenez une référence à l'élément parent
+  let parent = document.getElementById('name');
+
+  // Initialisez une variable pour stocker le div le plus long
+  let longestDiv = null;
+  let longestWidth = 0;
+
+  // Parcourez tous les enfants div de cet élément
+  for (let child of parent.children) {
+    // Calculez la largeur du texte à l'intérieur
+    let textWidth = child.scrollWidth;
+
+    // Si ce div est plus long que le div le plus long actuel, mettez à jour le div le plus long
+    if (textWidth > longestWidth) {
+      longestDiv = child;
+      longestWidth = textWidth;
+    }
+  }
+
+  // Ajustez la taille de la police du div le plus long jusqu'à ce que la largeur du texte soit égale à la largeur de l'élément
+  let elementWidth = parent.offsetWidth;
+  let fontSize = parseFloat(window.getComputedStyle(longestDiv, null).getPropertyValue('font-size'));
+  while (longestDiv.scrollWidth > elementWidth) {
+    fontSize -= 1;
+    longestDiv.style.fontSize = fontSize + "px";
+  }
+
+  // Appliquez la taille de la police calculée à tous les divs dans le conteneur
+  for (let child of parent.children) {
+    child.style.fontSize = fontSize + "px";
+  }
 }
