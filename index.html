@@ -22,8 +22,8 @@
   <!-- <script src="libs/jquery.i18n.emitter.js"></script> -->
   <!-- <script src="libs/jquery.i18n.language.js"></script> -->
 
-  <script src="js/i18n.js"></script>
-  <script type='text/javascript' src='js/form.js'></script>
+  <!-- <script src="js/i18n.js"></script> -->
+  <script type='text/javascript' src='js/form.js?r=3'></script>
 </head>
 <body onload="initValues();">
   <div id=debug></div>
@@ -35,8 +35,9 @@
         <td>
           <div id="header">
             <div>
-                  <!-- <h1 id="alt_logo">Pick-Up</h1> -->
-                  <h1><a href="#" onclick="showForm();return false"><img id=logo alt="Pick-Up"></h1>
+              <h1><a href="#" onclick="showForm();return false">
+                <img id=logo alt="Pick-Up" src="images/pickup-logo-180x180.png">
+              </a></h1>
             </div>
           </div>
         </td>
@@ -45,8 +46,8 @@
     <tbody>
       <tr>
         <td id=name valign=middle>
-          <div id=firstname></div>
-          <div id=lastname>Hello</div>
+          <div id=firstname>John</div>
+          <div id=lastname>Doe</div>
           <div id=nickname>Is it me you're looking for? </div>
         </td>
       </tr>
