@@ -99,13 +99,16 @@ function clearForm() {
 }
 
 function setCookie(cname, cvalue, exdays) {
+  // debug("setCookie " + cname + "=" + cvalue + " for " + exdays + " days");
   var d = new Date();
   d.setTime(d.getTime() + (exdays*24*60*60*1000));
   var expires = "expires="+ d.toUTCString();
   document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+  // debug("saved");
 }
 
 function getCookie(cname) {
+  // debug("getCookie " + cname);
   var name = cname + "=";
   var decodedCookie = decodeURIComponent(document.cookie);
   var ca = decodedCookie.split(';');
@@ -115,6 +118,7 @@ function getCookie(cname) {
       c = c.substring(1);
     }
     if (c.indexOf(name) == 0) {
+      // debug(cname + "=" + c.substring(name.length, c.length));
       return c.substring(name.length, c.length);
     }
   }
@@ -129,18 +133,22 @@ function imagePicker() {
 
 function refreshPage() {
   document.getElementById("logo").src = document.getElementById("f_logo").value;
+  debug("f_logo " + document.getElementById("f_logo").value);
+  debug("c_logo " + document.getElementById("logo").getAttribute("src"));
   if(document.getElementById("f_logo").value != "") {
     // document.getElementById("alt_logo").style.display = "none";
     setCookie("logo", document.getElementById("logo").getAttribute("src"), 60);
     if(typeof window.androidObj.textToAndroid === "function")
-      window.androidObj.textToAndroid(document.getElementById("f_logo").value);
+    window.androidObj.textToAndroid(document.getElementById("f_logo").value);
     document.getElementById("company_name").style.display = "none";
-    document.getElementById("logo").style.display = "inline-block";
+    document.getElementById("logo").style.display = "block";
+    debug("<img src=" + logo + ">");
   } else {
+    debug("empty logo");
     if(document.getElementById("company_name").innerHTML == "")
-      document.getElementById("company_name").innerHTML = "Pick-Up";
-    document.getElementById("company_name").style.display = "inline-block";
-    document.getElementById("logo").style.display = "none";
+    document.getElementById("company_name").innerHTML = "My Anonymous Cie";
+      document.getElementById("company_name").style.display = "block";
+      document.getElementById("logo").style.display = "none";
   }
   document.getElementById("firstname").innerHTML = document.getElementById("f_firstname").value;
   document.getElementById("lastname").innerHTML = document.getElementById("f_lastname").value;
@@ -169,10 +177,13 @@ function initValues() {
 
   if(getURLParameter("logo") != "") {
     logo = getURLParameter("logo");
+    // debug("from url: " + logo);
   } else {
     logo = getCookie("logo");
+    // debug("from cookies: " + logo);
   }
   if(logo != "") {
+    debug("i_logo " + logo);
     document.getElementById("logo").src = logo;
     // document.getElementById("h_logo").value = logo;
     document.getElementById("f_logo").value = logo;
