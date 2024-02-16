@@ -45,9 +45,9 @@ function processHTML(data) {
       document.getElementById("download").style.display = "block";
       document.getElementById("download").innerHTML = " <a href='" + json.LOCATION + "'>" + "Version " + availableVersion + " is available" +"</a>";
     }
-  } else {
-    document.getElementById("download").style.display = "block";
-    document.getElementById("download").innerHTML = " <a href='" + json.LOCATION + "'>" + "Download Android app" + "</a>";
+  // } else {
+  //   document.getElementById("download").style.display = "block";
+  //   document.getElementById("download").innerHTML = " <a href='" + json.LOCATION + "'>" + "Download Android app" + "</a>";
   }
 }
 
