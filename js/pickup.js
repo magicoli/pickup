@@ -9,6 +9,7 @@ function adjustFontSize() {
 
     // Start with a reasonable guess at the font size
     var fontSize = 20; 
+    var maxFontSize = window.innerHeight / 4;
 
     // Increase the font size until the widest line is as wide as the display
     var widestLineWidth;
@@ -22,7 +23,7 @@ function adjustFontSize() {
           widestLineWidth = lineWidth;
         }
       }
-    } while (widestLineWidth < maxWidth && fontSize < 300); // Added a limit to fontSize to prevent infinite loop
+    } while (widestLineWidth < maxWidth && fontSize < maxFontSize); // Added a limit to fontSize to prevent infinite loop
 
     // The widest line is now too wide, so decrease the font size by one step
     fontSize--;
