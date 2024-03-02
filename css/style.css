@@ -5,6 +5,8 @@ body {
     width: auto;
     text-align: center;
     font-size: 2vh;
+    background-color: white;
+    color: black;
 }
 
 a, a:visited, a:hover, a:active {
@@ -51,23 +53,12 @@ footer {
     justify-items: center;
 }
 
-@media (prefers-color-scheme: dark) {
-    body {
-        background-color: black;
-        color: white;
-    }
-
-    a, a:visited {
-        color: #999;
-    }
-}
-
 /*
  * Full screen button
  */
 
 body, ::backdrop {
-    background: #fff;
+    background: inherit;
 }
 #fullscreen-button {
     position: absolute;
@@ -103,3 +94,15 @@ body, ::backdrop {
     fill:  inherit;
     margin: 0 auto;
 }
+
+@media (prefers-color-scheme: dark) {
+    body {
+        background-color: black;
+        color: white;
+    }
+
+    a, a:visited {
+        color: #999;
+    }
+}
+
