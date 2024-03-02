@@ -1,4 +1,5 @@
 body {
+    font-family: "Helvetica Neue", Arial, "Liberation Sans", Roboto, "Noto Sans", sans-serif;
     margin: 0;
     padding: 0;
     width: auto;
@@ -35,6 +36,15 @@ main > .content {
     width: 100%;
     margin: auto;
 }
+.editable input {
+    font-size: inherit;
+    /* width: auto; */
+    /* min-width: 5em; */
+}
+.editable.name input {
+    width: calc(50% - 20px);
+}
+
 .name {
     white-space: nowrap; /* disallow text wrapping */
 }

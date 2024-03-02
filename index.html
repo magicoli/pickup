@@ -57,7 +57,7 @@
     <main>
       <div id="display" class="content">
           <span class="editable name" id=firstname>Lionel</span>
-          <span class="editable name" id=lastname>Richie</span>
+          <span class="editable name" id=lastname>Richie de Richie Rich</span>
           <div class="editable comment" id=comment>Is it me you're looking for?</div>
       </div>
     </main>
@@ -84,6 +84,8 @@
             editables[i].textContent = '';
             editables[i].appendChild(input);
 
+            requestAnimationFrame(adjustFontSize);
+
             // If it's the first input field, set the focus to it
             if (i === 0) {
               input.focus();
@@ -93,18 +95,20 @@
       };
 
       var hideForm = function(event) {
-        var inputs = Array.from(display.getElementsByTagName('input'));
+      var inputs = Array.from(display.getElementsByTagName('input'));
 
-        for (var i = 0; i < inputs.length; i++) {
-          var span = document.createElement('span');
-          span.textContent = inputs[i].value;
-          // Add the span before clearing the input
-          inputs[i].parentNode.appendChild(span);
-          inputs[i].parentNode.removeChild(inputs[i]);
-        }
+      for (var i = 0; i < inputs.length; i++) {
+        var span = inputs[i].parentNode;
+        var text = inputs[i].value;
+        span.removeChild(inputs[i]);
+        // Reset the font-size style
+        span.style.fontSize = '';
+        span.textContent = text;
+      }
 
+        adjustFontSize();
         // Schedule adjustFontSize to be called at the next frame
-        requestAnimationFrame(adjustFontSize);
+        // setTimeout(adjustFontSize, 0);
       };
 
       display.addEventListener('click', displayClickListener);

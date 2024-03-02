@@ -22,7 +22,7 @@ function adjustFontSize() {
           widestLineWidth = lineWidth;
         }
       }
-    } while (widestLineWidth < maxWidth && fontSize < 200); // Added a limit to fontSize to prevent infinite loop
+    } while (widestLineWidth < maxWidth && fontSize < 300); // Added a limit to fontSize to prevent infinite loop
 
     // The widest line is now too wide, so decrease the font size by one step
     fontSize--;
