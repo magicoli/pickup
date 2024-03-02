@@ -7,6 +7,9 @@ body {
     font-size: 2vh;
 }
 
+a, a:visited, a:hover, a:active {
+    color: inherit;
+}
 #page-wrapper {
     display: grid;
     height: 100%;
@@ -19,7 +22,6 @@ header, main, footer {
 }
 
 header {
-    /* background: green; */
 }
 header h1 {
     margin: 0;
@@ -28,17 +30,13 @@ header h1 {
 main {
     font-size: 5vw;
     display: grid;
-    /* background: yellow; */
 }
 main > .content {
-    /* background: orange; */
     width: 100%;
     margin: auto;
 }
 .editable input {
     font-size: inherit;
-    /* width: auto; */
-    /* min-width: 5em; */
 }
 .editable.name input {
     width: calc(50% - 20px);
@@ -51,4 +49,15 @@ footer {
     display: grid;
     align-content: end;
     justify-items: center;
+}
+
+@media (prefers-color-scheme: dark) {
+    body {
+        background-color: black;
+        color: white;
+    }
+
+    a, a:visited {
+        color: #999;
+    }
 }
