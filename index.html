@@ -28,7 +28,7 @@
 
   <!-- <script src="js/i18n.js"></script> -->
 
-  <!-- <script type='text/javascript' src='js/script.js'></script> -->
+  <script type='text/javascript' src='js/pickup.js?r=3'></script>
   <link rel='stylesheet'  href='css/style.css' type='text/css' media='all' />
 
   <!-- DEBUG -->
@@ -36,13 +36,13 @@
     document.addEventListener('DOMContentLoaded', function() {
       var css = document.querySelector("link[href='css/style.css']");
       css.href = 'css/style.css?r=' + new Date().getTime();
-      // var js = document.querySelector("script[src='js/form.js']");
-      // js.src = 'js/script.js?version=' + new Date().getTime();
+      var js = document.querySelector("script[src='js/pickup.js?r=3']");
+      js.src = 'js/pickup.js?r=' + new Date().getTime();
     });
   </script>
   <!-- END DEBUG -->
 </head>
-<body onload="initValues();">
+<body>
   <div id="page-wrapper">
     <header>
       <div id="header">
@@ -66,44 +66,6 @@
     </footer>
   </div>
   <script type='text/javascript'>
-    function adjustFontSize() {
-      var display = document.getElementById('display');
-      var lines = display.getElementsByClassName('name');
-      var maxWidth = display.getBoundingClientRect().width;
-
-      // Create a canvas context to measure the text width
-      var canvas = document.createElement('canvas');
-      var context = canvas.getContext('2d');
-
-      // Start with a reasonable guess at the font size
-      var fontSize = 20; 
-
-      // Increase the font size until the widest line is as wide as the display
-      var widestLineWidth;
-      do {
-        fontSize++;
-        widestLineWidth = 0;
-        for (var i = 0; i < lines.length; i++) {
-          context.font = fontSize + 'px sans-serif'; // Adjust the font family if necessary
-          var lineWidth = context.measureText(lines[i].textContent).width;
-          if (lineWidth > widestLineWidth) {
-            widestLineWidth = lineWidth;
-          }
-        }
-      } while (widestLineWidth < maxWidth && fontSize < 200); // Added a limit to fontSize to prevent infinite loop
-
-      // The widest line is now too wide, so decrease the font size by one step
-      fontSize--;
-      for (var i = 0; i < lines.length; i++) {
-        lines[i].style.fontSize = fontSize + 'px';
-      }
-    }
-
-    // Call the function when the DOM is fully loaded
-    document.addEventListener('DOMContentLoaded', adjustFontSize);
-
-    // Call the function whenever the data changes
-    // ...
   </script>
 </body>
 </html>
