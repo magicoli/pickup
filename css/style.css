@@ -15,7 +15,7 @@ a, a:visited, a:hover, a:active {
 #page-wrapper {
     display: grid;
     height: 100%;
-    grid-template-rows: 1fr 5fr 1fr;
+    grid-template-rows: 10vh 5fr 10vh;
     min-height: 100%;
 }
 
@@ -28,7 +28,9 @@ header {
 header h1 {
     margin: 0;
 }
-
+header #logo {
+    max-height: 10vh;
+}
 main {
     font-size: 5vw;
     display: grid;
