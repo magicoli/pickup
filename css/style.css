@@ -61,3 +61,45 @@ footer {
         color: #999;
     }
 }
+
+/*
+ * Full screen button
+ */
+
+body, ::backdrop {
+    background: #fff;
+}
+#fullscreen-button {
+    position: absolute;
+    bottom:  15px;
+    right:  15px;
+    background: rgba(0,0,0,0.05);
+    border:  0;
+    width:  40px;
+    height:  40px;
+    border-radius: 50%;
+    box-sizing: border-box;
+    transition:  transform .3s;
+    cursor:  pointer;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+#fullscreen-button:hover {
+    transform: scale(1.125);
+}
+#fullscreen-button svg:nth-child(1) { 
+    display: none;
+}
+[fullscreen] #fullscreen-button svg:nth-child(2) {
+    display: none;
+}
+[fullscreen] #fullscreen-button svg:nth-child(1) {
+    display: inline-block;
+}
+#fullscreen-button svg {
+    width:  20px;
+    height:  20px;
+    fill:  inherit;
+    margin: 0 auto;
+}
