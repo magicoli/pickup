@@ -35,23 +35,31 @@ function adjustFontSize() {
 // Call the adjustFontSize() when the DOM is fully loaded
 document.addEventListener('DOMContentLoaded', adjustFontSize);
 
-var hideForm = function(event) {
-  var inputs = Array.from(display.getElementsByTagName('input'));
-
-  for (var i = 0; i < inputs.length; i++) {
-    var span = inputs[i].parentNode;
-    var text = inputs[i].value;
-    span.removeChild(inputs[i]);
-    // Reset the font-size style
-    span.style.fontSize = '';
-    span.textContent = text;
-  }
-
-  adjustFontSize();
-};
 
 document.addEventListener('DOMContentLoaded', function() {
   var display = document.getElementById('display');
+
+  var hideForm = function(event) {
+    if (event.target.tagName === 'INPUT') {
+      return; // Ignore the event if the clicked element is an input field
+    }
+
+    var inputs = Array.from(display.getElementsByTagName('input'));
+  
+    for (var i = 0; i < inputs.length; i++) {
+      var span = inputs[i].parentNode;
+      var text = inputs[i].value;
+      span.removeChild(inputs[i]);
+      // Reset the font-size style
+      span.style.fontSize = '';
+      span.textContent = text;
+    }
+  
+    adjustFontSize();
+    display.removeEventListener('click', hideForm);
+    display.addEventListener('click', displayClickListener);
+  };
+
   var displayClickListener = function(event) {
     if (event.target.classList.contains('editable')) {
       var editables = Array.from(display.getElementsByClassName('editable'));
@@ -84,6 +92,8 @@ document.addEventListener('DOMContentLoaded', function() {
           input.focus();
         }
       }
+      display.removeEventListener('click', displayClickListener);
+      display.addEventListener('click', hideForm);
     }
   };
 
