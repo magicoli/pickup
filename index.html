@@ -36,8 +36,8 @@
     document.addEventListener('DOMContentLoaded', function() {
       var css = document.querySelector("link[href='css/style.css']");
       css.href = 'css/style.css?r=' + new Date().getTime();
-      var js = document.querySelector("script[src='js/form.js']");
-      js.src = 'js/script.js?version=' + new Date().getTime();
+      // var js = document.querySelector("script[src='js/form.js']");
+      // js.src = 'js/script.js?version=' + new Date().getTime();
     });
   </script>
   <!-- END DEBUG -->
@@ -56,43 +56,54 @@
     </header>
     <main>
       <div id="display" class="content">
-        <div id=name>
-          <div id=firstname>John</div>
-          <div id=lastname>Doe</div>
-          <div id=nickname>Is it me you're looking for? </div>
-        </div>
-      </div>
-      <div id=form style="display:none;">
-        <form action="#" onsubmit="refreshPage();return false">
-          <div>
-            <!-- <label for="f_logo">Select a file:</label> -->
-            <!-- <input id="f_logo" name="logo_file" type="file"> -->
-            <!-- <input id="f_logo" name="logo"> -->
-            <!-- <input id="f_logo" type=hidden name="logo" value="images/magiiic-logoby-v4-by.png"> -->
-            <select id="f_logo" name="logo">
-              <option value='images/magiiic-logoby-v4-by.png'>Magiiic</option>
-              <option value='images/lelitdoli-logo-v1-fuchsia-1.png'>Le lit d'Oli</option>
-              <option value='images/mosaiques-logo-v3-1L-yellow.png' >Gîtes Mosaïques</option>
-              <option value='images/kazamoise-logo-v0-248x40.png' >Kaz à Moïse</option>
-            </select>
-          </div><div>
-            <input type=text id="f_firstname" name=firstname placeholder="First name" value="">
-          </div><div>
-            <input type=text id="f_lastname" name=lastname placeholder="Name (required)" value="" required>
-          </div><div>
-            <input type=text id="f_nickname" name=nickname placeholder="Nickname" value="">
-          </div><div>
-            <input id=submit type="submit" value="Submit" data-i18n="Submit">
-            <input id=clear type="submit" name=action value="Clear" onclick="clearForm();return false"  data-i18n="Clear">
-          </div>
-        </form>
-        <div id=download style="display:none"></div>
-        <div id=debug></div>
+          <span class=name id=firstname>Lionel</span>
+          <span class=name id=lastname>Richie</span>
+          <div class=comment id=comment>Is it me you're looking for?</div>
       </div>
     </main>
     <footer>
       <div id="footer">Available in a theater near you</div>
     </footer>
   </div>
+  <script type='text/javascript'>
+    function adjustFontSize() {
+      var display = document.getElementById('display');
+      var lines = display.getElementsByClassName('name');
+      var maxWidth = display.getBoundingClientRect().width;
+
+      // Create a canvas context to measure the text width
+      var canvas = document.createElement('canvas');
+      var context = canvas.getContext('2d');
+
+      // Start with a reasonable guess at the font size
+      var fontSize = 20; 
+
+      // Increase the font size until the widest line is as wide as the display
+      var widestLineWidth;
+      do {
+        fontSize++;
+        widestLineWidth = 0;
+        for (var i = 0; i < lines.length; i++) {
+          context.font = fontSize + 'px sans-serif'; // Adjust the font family if necessary
+          var lineWidth = context.measureText(lines[i].textContent).width;
+          if (lineWidth > widestLineWidth) {
+            widestLineWidth = lineWidth;
+          }
+        }
+      } while (widestLineWidth < maxWidth && fontSize < 200); // Added a limit to fontSize to prevent infinite loop
+
+      // The widest line is now too wide, so decrease the font size by one step
+      fontSize--;
+      for (var i = 0; i < lines.length; i++) {
+        lines[i].style.fontSize = fontSize + 'px';
+      }
+    }
+
+    // Call the function when the DOM is fully loaded
+    document.addEventListener('DOMContentLoaded', adjustFontSize);
+
+    // Call the function whenever the data changes
+    // ...
+  </script>
 </body>
 </html>

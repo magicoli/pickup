@@ -1,0 +1,27 @@
+<div id=form style="display:none;">
+    <form action="#" onsubmit="refreshPage();return false">
+      <div>
+        <!-- <label for="f_logo">Select a file:</label> -->
+        <!-- <input id="f_logo" name="logo_file" type="file"> -->
+        <!-- <input id="f_logo" name="logo"> -->
+        <!-- <input id="f_logo" type=hidden name="logo" value="images/magiiic-logoby-v4-by.png"> -->
+        <select id="f_logo" name="logo">
+          <option value='images/magiiic-logoby-v4-by.png'>Magiiic</option>
+          <option value='images/lelitdoli-logo-v1-fuchsia-1.png'>Le lit d'Oli</option>
+          <option value='images/mosaiques-logo-v3-1L-yellow.png' >Gîtes Mosaïques</option>
+          <option value='images/kazamoise-logo-v0-248x40.png' >Kaz à Moïse</option>
+        </select>
+      </div><div>
+        <input type=text id="f_firstname" name=firstname placeholder="First name" value="">
+      </div><div>
+        <input type=text id="f_lastname" name=lastname placeholder="Name (required)" value="" required>
+      </div><div>
+        <input type=text id="f_nickname" name=nickname placeholder="Nickname" value="">
+      </div><div>
+        <input id=submit type="submit" value="Submit" data-i18n="Submit">
+        <input id=clear type="submit" name=action value="Clear" onclick="clearForm();return false"  data-i18n="Clear">
+      </div>
+    </form>
+    <div id=download style="display:none"></div>
+    <div id=debug></div>
+  </div>
