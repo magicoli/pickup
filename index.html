@@ -56,9 +56,9 @@
     </header>
     <main>
       <div id="display" class="content">
-          <span class=name id=firstname>Lionel</span>
-          <span class=name id=lastname>Richie</span>
-          <div class=comment id=comment>Is it me you're looking for?</div>
+          <span class="editable name" id=firstname>Lionel</span>
+          <span class="editable name" id=lastname>Richie</span>
+          <div class="editable comment" id=comment>Is it me you're looking for?</div>
       </div>
     </main>
     <footer>
@@ -66,6 +66,49 @@
     </footer>
   </div>
   <script type='text/javascript'>
+    document.addEventListener('DOMContentLoaded', function() {
+      var display = document.getElementById('display');
+
+      var displayClickListener = function(event) {
+        if (event.target.classList.contains('editable')) {
+          var editables = Array.from(display.getElementsByClassName('editable'));
+
+          for (var i = 0; i < editables.length; i++) {
+            var input = document.createElement('input');
+            input.type = 'text';
+            input.value = editables[i].textContent;
+            if (i === editables.length - 1) { // If it's the last input field
+              input.addEventListener('blur', hideForm); // Listen for the blur event
+            }
+            // Replace the content of the container
+            editables[i].textContent = '';
+            editables[i].appendChild(input);
+
+            // If it's the first input field, set the focus to it
+            if (i === 0) {
+              input.focus();
+            }
+          }
+        }
+      };
+
+      var hideForm = function(event) {
+        var inputs = Array.from(display.getElementsByTagName('input'));
+
+        for (var i = 0; i < inputs.length; i++) {
+          var span = document.createElement('span');
+          span.textContent = inputs[i].value;
+          // Add the span before clearing the input
+          inputs[i].parentNode.appendChild(span);
+          inputs[i].parentNode.removeChild(inputs[i]);
+        }
+
+        // Schedule adjustFontSize to be called at the next frame
+        requestAnimationFrame(adjustFontSize);
+      };
+
+      display.addEventListener('click', displayClickListener);
+    });
   </script>
 </body>
 </html>
