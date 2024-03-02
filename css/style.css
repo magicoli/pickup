@@ -4,15 +4,14 @@ body {
     padding: 0;
     width: auto;
     text-align: center;
-    background: #fff;
     font-size: 2vh;
 }
 
 #page-wrapper {
     display: grid;
-    grid-template-rows: auto 1fr auto;
+    height: 100%;
+    grid-template-rows: 1fr 5fr 1fr;
     min-height: 100%;
-    background: pink;
 }
 
 header, main, footer {
@@ -20,7 +19,7 @@ header, main, footer {
 }
 
 header {
-    background: green;
+    /* background: green; */
 }
 header h1 {
     margin: 0;
@@ -29,10 +28,10 @@ header h1 {
 main {
     font-size: 5vw;
     display: grid;
-    background: yellow;
+    /* background: yellow; */
 }
 main > .content {
-    background: orange;
+    /* background: orange; */
     width: 100%;
     margin: auto;
 }
@@ -49,5 +48,7 @@ main > .content {
     white-space: nowrap; /* disallow text wrapping */
 }
 footer {
-    background: red;
+    display: grid;
+    align-content: end;
+    justify-items: center;
 }
