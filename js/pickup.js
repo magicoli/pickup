@@ -33,3 +33,59 @@ function adjustFontSize() {
 
 // Call the adjustFontSize() when the DOM is fully loaded
 document.addEventListener('DOMContentLoaded', adjustFontSize);
+
+var hideForm = function(event) {
+  var inputs = Array.from(display.getElementsByTagName('input'));
+
+  for (var i = 0; i < inputs.length; i++) {
+    var span = inputs[i].parentNode;
+    var text = inputs[i].value;
+    span.removeChild(inputs[i]);
+    // Reset the font-size style
+    span.style.fontSize = '';
+    span.textContent = text;
+  }
+
+  adjustFontSize();
+};
+
+document.addEventListener('DOMContentLoaded', function() {
+  var display = document.getElementById('display');
+  var displayClickListener = function(event) {
+    if (event.target.classList.contains('editable')) {
+      var editables = Array.from(display.getElementsByClassName('editable'));
+
+      for (var i = 0; i < editables.length; i++) {
+        var input = document.createElement('input');
+        input.type = 'text';
+        input.value = editables[i].textContent;
+        if (i === editables.length - 1) { // If it's the last input field
+          input.addEventListener('blur', hideForm); // Listen for the blur event
+          // Intercept the Tab key
+          input.addEventListener('keydown', function(e) {
+            if (e.key === 'Tab') {
+              e.preventDefault();
+              // Move focus to the first input field
+              if (editables[0].firstChild) {
+                editables[0].firstChild.focus();
+              }
+            }
+          });
+        }
+        // Replace the content of the container
+        editables[i].textContent = '';
+        editables[i].appendChild(input);
+
+        requestAnimationFrame(adjustFontSize);
+
+        // If it's the first input field, set the focus to it
+        if (i === 0) {
+          input.focus();
+        }
+      }
+    }
+  };
+
+  // Le reste de votre code va ici...
+  display.addEventListener('click', displayClickListener);
+});
