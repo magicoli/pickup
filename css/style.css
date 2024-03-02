@@ -50,6 +50,7 @@ main > .content {
     white-space: nowrap; /* disallow text wrapping */
 }
 footer {
+    font-size: small;
     display: grid;
     align-content: end;
     justify-items: center;
@@ -66,7 +67,7 @@ body, ::backdrop {
     position: absolute;
     bottom:  15px;
     right:  15px;
-    background: rgba(0,0,0,0.05);
+    background-color: rgba(0,0,0,0.05);
     border:  0;
     width:  40px;
     height:  40px;
@@ -79,6 +80,7 @@ body, ::backdrop {
     justify-content: center;
 }
 #fullscreen-button:hover {
+    background-color: rgba(0,0,0,0.1);
     transform: scale(1.125);
 }
 #fullscreen-button svg:nth-child(1) { 
@@ -95,14 +97,26 @@ body, ::backdrop {
     height:  20px;
     fill:  inherit;
     margin: 0 auto;
+    opacity: 0.25;
 }
 
 @media (prefers-color-scheme: dark) {
-    body {
+    body, ::backdrop {
         background-color: black;
         color: white;
     }
 
+    #fullscreen-button {
+        background-color: rgba(255,255,255,0.05);
+    }
+    #fullscreen-button:hover {
+        background-color: rgba(255,255,255,0.1);
+    }
+    #fullscreen-button svg {
+        fill:  white;
+        /* opacity: 1; */
+    }
+    
     a, a:visited {
         color: #999;
     }
