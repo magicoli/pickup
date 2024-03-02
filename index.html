@@ -4,10 +4,14 @@
   <link rel="icon" href="images/pickup-logo-32x32.png" sizes="32x32" />
   <link rel="icon" href="images/pickup-logo-192x192.png" sizes="192x192" />
   <link rel="apple-touch-icon-precomposed" href="images/pickup-logo-180x180.png" />
+  <link rel="manifest" href="manifest.json">
 
-  <link rel='stylesheet' id='pu_main'  href='css/main.css' type='text/css' media='all' />
-  <link rel='stylesheet' id='pu_main'  href='css/pane.css' type='text/css' media='all' />
+  <!-- <link rel='stylesheet' id='pu_main'  href='css/main.css?r=8' type='text/css' media='all' /> -->
+  <!-- <link rel='stylesheet' id='pu_main'  href='css/pane.css?r=8' type='text/css' media='all' /> -->
 
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+  <meta http-equiv="Pragma" content="no-cache" />
+  <meta http-equiv="Expires" content="0" />
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8" >
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="mobile-web-app-capable" content="yes">
@@ -23,67 +27,72 @@
   <!-- <script src="libs/jquery.i18n.language.js"></script> -->
 
   <!-- <script src="js/i18n.js"></script> -->
-  <script type='text/javascript' src='js/form.js?r=4'></script>
+
+  <!-- <script type='text/javascript' src='js/script.js'></script> -->
+  <link rel='stylesheet'  href='css/style.css' type='text/css' media='all' />
+
+  <!-- DEBUG -->
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      var css = document.querySelector("link[href='css/style.css']");
+      css.href = 'css/style.css?r=' + new Date().getTime();
+      var js = document.querySelector("script[src='js/form.js']");
+      js.src = 'js/script.js?version=' + new Date().getTime();
+    });
+  </script>
+  <!-- END DEBUG -->
 </head>
 <body onload="initValues();">
-  <div id=debug></div>
-
-  <div id=display>
-    <table>
-      <thead>
-      <tr>
-        <td>
-          <div id="header">
-            <div>
-              <h1><a href="#" onclick="showForm();return false">
-                <img id=logo alt="Pick-Up" src="images/pickup-logo-180x180.png">
-              </a></h1>
-            </div>
-          </div>
-        </td>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td id=name valign=middle>
+  <div id="page-wrapper">
+    <header>
+      <div id="header">
+        <div>
+          <h1><a href="#" onclick="showForm();return false">
+            <img id=logo alt="Pick-Up" src="images/pickup-logo-180x180.png">
+          </a></h1>
+        </div>
+        <div id=debug></div>
+      </div>
+    </header>
+    <main>
+      <div id="display" class="content">
+        <div id=name>
           <div id=firstname>John</div>
           <div id=lastname>Doe</div>
           <div id=nickname>Is it me you're looking for? </div>
-        </td>
-      </tr>
-    </tbody>
-    <tfoot>
-      <tr>
-        <td><div id="footer">
-        </div></td>
-      </tr>
-    </tfoot>
-    </table>
-  </div>
-  <div id=form style="display:none;">
-    <form action="#" onsubmit="refreshPage();return false">
-      <div>
-        <!-- <label for="f_logo">Select a file:</label> -->
-        <!-- <input id="f_logo" name="logo_file" type="file"> -->
-        <!-- <input id="f_logo" name="logo"> -->
-        <!-- <input id="f_logo" type=hidden name="logo" value="images/magiiic-logoby-v4-by.png"> -->
-        <select id="f_logo" name="logo">
-          <option value='images/magiiic-logoby-v4-by.png'>Magiiic</option>
-          <option value='images/lelitdoli-logo-v1-fuchsia-1.png'>Le lit d'Oli</option>
-          <option value='images/mosaiques-logo-v3-1L-yellow.png' >Gîtes Mosaïques</option>
-          <option value='images/kazamoise-logo-v0-248x40.png' >Kaz à Moïse</option>
-        </select>
-      <input type=text id="f_firstname" name=firstname placeholder="First name" value="">
-    </div>
-      <input type=text id="f_lastname" name=lastname placeholder="Name (required)" value="" required>
-      <input type=text id="f_nickname" name=nickname placeholder="Nickname" value="">
-      <div>
-        <input id=submit type="submit" value="Submit" data-i18n="Submit">
-        <input id=clear type="submit" name=action value="Clear" onclick="clearForm();return false"  data-i18n="Clear">
+        </div>
       </div>
-    </form>
-    <div id=download style="display:none"></div>
-    <div id=debug></div>
+      <div id=form style="display:none;">
+        <form action="#" onsubmit="refreshPage();return false">
+          <div>
+            <!-- <label for="f_logo">Select a file:</label> -->
+            <!-- <input id="f_logo" name="logo_file" type="file"> -->
+            <!-- <input id="f_logo" name="logo"> -->
+            <!-- <input id="f_logo" type=hidden name="logo" value="images/magiiic-logoby-v4-by.png"> -->
+            <select id="f_logo" name="logo">
+              <option value='images/magiiic-logoby-v4-by.png'>Magiiic</option>
+              <option value='images/lelitdoli-logo-v1-fuchsia-1.png'>Le lit d'Oli</option>
+              <option value='images/mosaiques-logo-v3-1L-yellow.png' >Gîtes Mosaïques</option>
+              <option value='images/kazamoise-logo-v0-248x40.png' >Kaz à Moïse</option>
+            </select>
+          </div><div>
+            <input type=text id="f_firstname" name=firstname placeholder="First name" value="">
+          </div><div>
+            <input type=text id="f_lastname" name=lastname placeholder="Name (required)" value="" required>
+          </div><div>
+            <input type=text id="f_nickname" name=nickname placeholder="Nickname" value="">
+          </div><div>
+            <input id=submit type="submit" value="Submit" data-i18n="Submit">
+            <input id=clear type="submit" name=action value="Clear" onclick="clearForm();return false"  data-i18n="Clear">
+          </div>
+        </form>
+        <div id=download style="display:none"></div>
+        <div id=debug></div>
+      </div>
+    </main>
+    <footer>
+      <div id="footer">Available in a theater near you</div>
+    </footer>
   </div>
 </body>
 </html>
