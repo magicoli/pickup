@@ -46,6 +46,9 @@ main > .content {
     width: calc(50% - 20px);
 }
 
+.name, .comment {
+    letter-spacing: -0.04em;
+}
 .name {
     white-space: nowrap; /* disallow text wrapping */
 }
