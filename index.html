@@ -46,54 +46,122 @@
         <button id="installButton" style="display: none;">Installer</button>
       </div>
     </footer>
+    <dialog id="settingsModal" style="display: none;">
+      <label for="title">Titre :</label>
+      <input type="text" id="title" name="title">
+      <label for="logo">Logo :</label>
+      <input type="file" id="logo" name="logo" accept="image/*">
+      <label for="bgColor">Couleur d'arrière-plan :</label>
+      <input type="color" id="bgColor" name="bgColor">
+      <label for="bgImage">Image d'arrière-plan :</label>
+      <input type="file" id="bgImage" name="bgImage" accept="image/*">
+      <!-- Ajoutez ce bouton à votre boîte de dialogue -->
+      <button id="resetSettings">Réinitialiser</button>
+      <button id="saveSettings">Enregistrer</button>
+    </dialog>
   </div>
+  <!-- Ajoutez cette modal à votre HTML -->
   <script type='text/javascript'>
+    function showForm() {
+      var settingsModal = document.getElementById('settingsModal');
+      settingsModal.style.display = 'block';
+    }
+
+document.getElementById('logo').addEventListener('click', showForm);
     document.addEventListener('DOMContentLoaded', function() {
       var logoImage = document.getElementById('logo');
-      var fileInput = document.createElement('input');
-      fileInput.type = 'file';
-      fileInput.accept = 'image/*';
-      fileInput.style.display = 'none';
-      document.body.appendChild(fileInput);
+      var titleInput = document.getElementById('title');
+      var bgColorInput = document.getElementById('bgColor');
+      var bgImageInput = document.getElementById('bgImage');
+      var saveSettingsButton = document.getElementById('saveSettings');
+      var settingsModal = document.getElementById('settingsModal');
 
-      // Load the saved image or title from localStorage
-      var savedImage = localStorage.getItem('logoImage');
-      var savedTitle = localStorage.getItem('logoTitle');
-      if (savedImage) {
-        logoImage.src = savedImage;
-      } else if (savedTitle) {
-        logoImage.parentNode.replaceChild(document.createTextNode(savedTitle), logoImage);
-      }
-
-      fileInput.addEventListener('change', function() {
-        var file = fileInput.files[0];
-        var reader = new FileReader();
-
-        reader.onloadend = function() {
-          logoImage.src = reader.result;
-          // Save the image to localStorage
-          localStorage.setItem('logoImage', reader.result);
-          localStorage.removeItem('logoTitle');
-        }
-
-        if (file) {
-          reader.readAsDataURL(file);
-        }
-      });
+      // Load the saved settings from localStorage
+      var savedTitle = localStorage.getItem('title');
+      var savedLogo = localStorage.getItem('logo');
+      var savedBgColor = localStorage.getItem('bgColor');
+      var savedBgImage = localStorage.getItem('bgImage');
 
       logoImage.addEventListener('click', function() {
-        var title = prompt('Entrez le titre ou cliquez sur Annuler pour choisir une image :');
+        settingsModal.style.display = 'block';
+      });
 
-        if (title === null) {
-          // User clicked Cancel, trigger file input
-          fileInput.click();
+      var resetSettingsButton = document.getElementById('resetSettings');
+
+      function updateStyles() {
+        var savedTitle = localStorage.getItem('title');
+        var savedLogo = localStorage.getItem('logo');
+        var savedBgColor = localStorage.getItem('bgColor');
+        var savedBgImage = localStorage.getItem('bgImage');
+
+        if (savedTitle) {
+          titleInput.value = savedTitle;
         } else {
-          // User entered a title
-          logoImage.parentNode.replaceChild(document.createTextNode(title), logoImage);
-          // Save the title to localStorage
-          localStorage.setItem('logoTitle', title);
-          localStorage.removeItem('logoImage');
+          titleInput.value = document.title; // Get the current title from the HTML
         }
+
+        if (savedLogo) {
+          logoImage.src = savedLogo;
+        } else {
+          logoImage.src = document.getElementById('logo').src; // Get the current logo from the HTML
+        }
+
+        if (savedBgColor) {
+          console.log("saved BgColor", savedBgColor);
+          document.body.style.backgroundColor = savedBgColor;
+        } else {
+          savedBgColor = getComputedStyle(document.body).backgroundColor;
+          console.log("default BgColor", savedBgColor);
+        }
+
+        if (savedBgImage) {
+          document.body.style.backgroundImage = 'url(' + savedBgImage + ')';
+        } else {
+          document.body.style.backgroundImage = document.body.style.backgroundImage; // Get the current background image from the CSS
+        }
+      }
+
+      updateStyles();
+
+      saveSettingsButton.addEventListener('click', function() {
+        // Save the settings to localStorage
+        localStorage.setItem('title', titleInput.value);
+        localStorage.setItem('logo', logoImage.src);
+        localStorage.setItem('bgColor', bgColorInput.value);
+        if (bgImageInput.files[0]) {
+          var reader = new FileReader();
+          reader.onloadend = function() {
+            localStorage.setItem('bgImage', reader.result);
+            document.body.style.backgroundImage = 'url(' + reader.result + ')';
+          }
+          reader.readAsDataURL(bgImageInput.files[0]);
+        }
+        settingsModal.style.display = 'none';
+
+        updateStyles();
+      });
+
+      resetSettingsButton.addEventListener('click', function() {
+        // Remove the settings from localStorage
+        localStorage.removeItem('title');
+        if (logoImage.src) {
+          localStorage.removeItem('logo');
+        }
+        localStorage.removeItem('bgColor');
+        localStorage.removeItem('bgImage');
+
+        // Reset the form fields
+        titleInput.value = '';
+        bgColorInput.value = '';
+        bgImageInput.value = '';
+
+        // Reset the page styles
+        document.body.style.backgroundColor = '';
+        document.body.style.backgroundImage = '';
+
+        settingsModal.style.display = 'none';
+
+        updateStyles();
       });
     });
   </script>
