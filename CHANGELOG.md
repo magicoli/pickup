@@ -1,5 +1,10 @@
 # CHANGELOG
 
+2.0.0-dev-3
+* fix size of space between first and lastname
+* updated .gitignore
+* removed deprecated folder
+
 2.0.0-dev-1
 * adjust text size based on the name
 * added form to  update the name
