@@ -47,5 +47,56 @@
       </div>
     </footer>
   </div>
+  <script type='text/javascript'>
+    document.addEventListener('DOMContentLoaded', function() {
+      var logoImage = document.getElementById('logo');
+      var fileInput = document.createElement('input');
+      fileInput.type = 'file';
+      fileInput.accept = 'image/*';
+      fileInput.style.display = 'none';
+      document.body.appendChild(fileInput);
+
+      // Load the saved image or title from localStorage
+      var savedImage = localStorage.getItem('logoImage');
+      var savedTitle = localStorage.getItem('logoTitle');
+      if (savedImage) {
+        logoImage.src = savedImage;
+      } else if (savedTitle) {
+        logoImage.parentNode.replaceChild(document.createTextNode(savedTitle), logoImage);
+      }
+
+      fileInput.addEventListener('change', function() {
+        var file = fileInput.files[0];
+        var reader = new FileReader();
+
+        reader.onloadend = function() {
+          logoImage.src = reader.result;
+          // Save the image to localStorage
+          localStorage.setItem('logoImage', reader.result);
+          localStorage.removeItem('logoTitle');
+        }
+
+        if (file) {
+          reader.readAsDataURL(file);
+        }
+      });
+
+      logoImage.addEventListener('click', function() {
+        var title = prompt('Entrez le titre ou cliquez sur Annuler pour choisir une image :');
+
+        if (title === null) {
+          // User clicked Cancel, trigger file input
+          fileInput.click();
+        } else {
+          // User entered a title
+          logoImage.parentNode.replaceChild(document.createTextNode(title), logoImage);
+          // Save the title to localStorage
+          localStorage.setItem('logoTitle', title);
+          localStorage.removeItem('logoImage');
+        }
+      });
+    });
+  </script>
+
 </body>
 </html>
