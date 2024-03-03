@@ -134,3 +134,38 @@ document.addEventListener("DOMContentLoaded", function() {
     }
   } 
 });
+
+/*
+ * Install button
+ */
+
+document.addEventListener('DOMContentLoaded', (event) => {
+  let deferredPrompt;
+
+  const installButton = document.getElementById('installButton');
+  installButton.disabled = true;
+
+  window.addEventListener('beforeinstallprompt', (e) => {
+    e.preventDefault();
+    deferredPrompt = e;
+    installButton.style.display = 'block';
+    installButton.disabled = false;
+  });
+
+  installButton.addEventListener('click', (e) => {
+    if (!deferredPrompt) {
+      console.log('Install prompt not available');
+      return;
+    }
+    installButton.style.display = 'none';
+    deferredPrompt.prompt();
+    deferredPrompt.userChoice.then((choiceResult) => {
+        if (choiceResult.outcome === 'accepted') {
+          console.log('User accepted the A2HS prompt');
+        } else {
+          console.log('User dismissed the A2HS prompt');
+        }
+        deferredPrompt = null;
+      });
+  });
+});

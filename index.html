@@ -6,7 +6,7 @@
   <link rel="apple-touch-icon-precomposed" href="images/pickup-logo-180x180.png" />
   <link rel="manifest" href="manifest.json">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  
+
   <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
   <meta http-equiv="Pragma" content="no-cache" />
   <meta http-equiv="Expires" content="0" />
@@ -14,8 +14,9 @@
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="mobile-web-app-capable" content="yes">
 
-  <script type='text/javascript' src='js/pickup.js?r=9'></script>
-  <link rel='stylesheet'  href='css/style.css?r=9' type='text/css' media='all' />
+  <script type='text/javascript' src='js/service-workers.js?v=2.0.0-dev'></script>
+  <script type='text/javascript' src='js/pickup.js?v=2.0.0-dev'></script>
+  <link rel='stylesheet'  href='css/style.css?v=2.0.0-dev' type='text/css' media='all' />
 
 </head>
 <body>
@@ -38,10 +39,11 @@
       </div>
     </main>
     <footer>
-      <div id="footer">Powered by <a href="https://pickup.contact/">pickup.contact</a></div>
+      <div id="footer">
+        Powered by <a href="https://pickup.contact/">pickup.contact</a> 2.0.0-dev
+        <button id="installButton" style="display: none;">Installer</button>
+      </div>
     </footer>
   </div>
-  <script type='text/javascript'>
-  </script>
 </body>
 </html>
