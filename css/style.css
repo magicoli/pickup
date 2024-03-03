@@ -49,6 +49,9 @@ main > .content {
 .name {
     white-space: nowrap; /* disallow text wrapping */
 }
+#lastname {
+    font-weight: 600;
+}
 footer {
     font-size: small;
     display: grid;

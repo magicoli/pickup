@@ -1,5 +1,6 @@
 function adjustFontSize() {
     var display = document.getElementById('display');
+    var fullname = document.getElementById('fullname');
     var lines = display.getElementsByClassName('name');
     var maxWidth = display.getBoundingClientRect().width;
 
@@ -27,9 +28,10 @@ function adjustFontSize() {
 
     // The widest line is now too wide, so decrease the font size by one step
     fontSize--;
-    for (var i = 0; i < lines.length; i++) {
-      lines[i].style.fontSize = fontSize + 'px';
-    }
+    fullname.style.fontSize = fontSize + 'px';
+    // for (var i = 0; i < lines.length; i++) {
+    //   lines[i].style.fontSize = fontSize + 'px';
+    // }
   
 }
 
