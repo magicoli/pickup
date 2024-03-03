@@ -1,6 +1,6 @@
 # CHANGELOG
 
-2.0.0-dev
+2.0.0-dev-1
 * added form to  update the name
 * removed debug colors, updated styles
 * don't focus on url bar after the last field

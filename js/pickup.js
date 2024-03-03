@@ -33,11 +33,28 @@ function adjustFontSize() {
   
 }
 
-// Call the adjustFontSize() when the DOM is fully loaded
-document.addEventListener('DOMContentLoaded', adjustFontSize);
-
-
 document.addEventListener('DOMContentLoaded', function() {
+  // Get URL parameters
+  var urlParams = new URLSearchParams(window.location.search);
+  var firstName = urlParams.get('f');
+  var lastName = urlParams.get('l');
+  var name = urlParams.get('n');
+  var comment = urlParams.get('c');
+  if (name) {
+    var nameParts = name.split(' ');
+    firstName = nameParts[0];
+    lastName = nameParts.slice(1).join(' ');
+  }
+
+  // Update editable fields if at least one URL parameter is given
+  if (firstName || lastName || comment) {
+    document.getElementById('firstname').textContent = firstName ? firstName : '';
+    document.getElementById('lastname').textContent = lastName ? lastName : '';
+    document.getElementById('comment').textContent = comment ? comment : '';
+  }
+
+  adjustFontSize();
+
   var display = document.getElementById('display');
 
   var hideForm = function(event) {
