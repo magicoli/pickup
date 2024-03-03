@@ -1,9 +1,9 @@
-var CACHE_NAME = 'pickup-cache-v2.0.0-dev-3';
+var CACHE_NAME = 'pickup-cache-v2.0.0-dev-4';
 var urlsToCache = [
     '/',
-    'js/service-workers.js?v=2.0.0-dev-3',
-    'js/pickup.js?v=2.0.0-dev-3',
-    'css/style.css?v=2.0.0-dev-3',
+    'js/service-workers.js?v=2.0.0-dev-4',
+    'js/pickup.js?v=2.0.0-dev-4',
+    'css/style.css?v=2.0.0-dev-4',
     'images/pickup-logo-32x32.png',
     'images/pickup-logo-192x192.png',
     'images/pickup-logo-180x180.png'

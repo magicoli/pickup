@@ -1,5 +1,8 @@
 # CHANGELOG
 
+2.0.0-dev-4
+* adjust letter spacing
+
 2.0.0-dev-3
 * fix size of space between first and lastname
 * updated .gitignore
