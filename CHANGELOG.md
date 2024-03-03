@@ -1,15 +1,11 @@
 # CHANGELOG
 
 2.0.0-dev-1
-* added form to  update the name
-* removed debug colors, updated styles
-* don't focus on url bar after the last field
-* fix update font size and allow modifying again
-* moved script in js/pickup.js
 * adjust text size based on the name
-* starting redesign for v2
-
-* new start from scratch, to get rid of jQuery and other oversized stuff
+* added form to  update the name
+* added full screen button
+* added optional arguments f=firstname l=lastname n=name c=comment (name overrides firstname and lastname)
+* added web app install button. Kinda works
 
 1.4-dev-2 (small fixes)
 * manifest.json to enabke webapp for iOS devices
