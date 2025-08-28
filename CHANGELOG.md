@@ -1,5 +1,16 @@
 # CHANGELOG
 
+2.0.0-beta
+* First beta release as a Progressive Web App
+* Auto-scaling text that resizes names to fill screen
+* Click-to-edit functionality for all text elements
+* URL parameters support (f=firstname, l=lastname, n=name, c=comment)
+* Customizable logos, colors, and backgrounds
+* Progressive Web App with offline support and installation
+* Full-screen mode toggle
+* Service worker for caching
+* Responsive design for all screen sizes
+
 2.0.0-dev-4
 * adjust letter spacing
 

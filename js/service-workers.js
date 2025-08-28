@@ -1,12 +1,12 @@
-var CACHE_NAME = 'pickup-cache-v2.0.0-dev-4';
+var CACHE_NAME = 'pickup-cache-v2.0.0-beta';
 var urlsToCache = [
     '/',
-    'js/service-workers.js?v=2.0.0-dev-4',
-    'js/pickup.js?v=2.0.0-dev-4',
-    'css/style.css?v=2.0.0-dev-4',
-    'images/pickup-logo-32x32.png',
-    'images/pickup-logo-192x192.png',
-    'images/pickup-logo-180x180.png'
+    'js/service-workers.js?v=2.0.0-beta',
+    'js/pickup.js?v=2.0.0-beta',
+    'css/style.css?v=2.0.0-beta',
+    'assets/pickup-logo-32x32.png',
+    'assets/pickup-logo-192x192.png',
+    'assets/pickup-logo-180x180.png'
 ];
 
 self.addEventListener('install', function(event) {

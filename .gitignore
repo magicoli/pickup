@@ -1,4 +1,6 @@
 dev/
 fonts/
+images/*
+!images/.gitkeep
 *~
 .github/FUNDING-*

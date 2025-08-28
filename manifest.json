@@ -1,14 +1,14 @@
 {
     "short_name": "Pickup",
-    "name": "Pickup 2.2.2.0.0-dev-4",
+    "name": "Pickup 2.0.0-beta",
     "icons": [
         {
-            "src": "images/pickup-logo-192x192.png",
+            "src": "assets/pickup-logo-192x192.png",
             "type": "image/png",
             "sizes": "192x192"
         },
         {
-            "src": "images/pickup-logo-512x512.png",
+            "src": "assets/pickup-logo-512x512.png",
             "type": "image/png",
             "sizes": "512x512"
         }
