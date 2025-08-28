@@ -1,0 +1,21 @@
+{
+    "name": "pickup",
+    "description": "A wonderful digital sign for airport pick-ups and meeting people",
+    "version": "2.0.0-beta",
+    "author": "Magiiic",
+    "main": "index.html",
+    "scripts": {
+      "start": "npx http-server",
+      "serve": "npx http-server -p 8000"
+    },
+    "keywords": ["pickup", "sign", "airport", "pwa", "progressive-web-app"],
+    "license": "AGPL-3.0",
+    "homepage": "https://pickup.contact/",
+    "repository": {
+      "type": "git",
+      "url": "https://github.com/magicoli/pickup.git"
+    },
+    "devDependencies": {
+      "http-server": "^14.1.1"
+    }
+}
